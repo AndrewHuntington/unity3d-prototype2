@@ -8,10 +8,16 @@ public class DestroyOutOfBounds : MonoBehaviour
   private float lowerBound = -10.0f;
   private float leftBound = -25.0f;
   private float rightBound = 25.0f;
+  public PlayerController player;
+
   // Start is called before the first frame update
   void Start()
   {
-
+    GameObject playerObject = GameObject.Find("Player");
+    if (playerObject != null)
+    {
+      player = playerObject.GetComponent<PlayerController>();
+    }
   }
 
   // Update is called once per frame
@@ -23,8 +29,20 @@ public class DestroyOutOfBounds : MonoBehaviour
     }
     else if (transform.position.z < lowerBound)
     {
-      Debug.Log("Game Over!");
       Destroy(gameObject);
+
+      // Currently only takes a life if an animal goes past the lower boundary
+      // Animals that go through the left and right boundaries are destroyed, but do not take a life
+      if (!player.gameOver)
+      {
+        player.lives--;
+        Debug.Log("Lives: " + player.lives);
+
+        if (player.lives == 0)
+        {
+          Debug.Log("Game Over!");
+        }
+      }
     }
   }
 }

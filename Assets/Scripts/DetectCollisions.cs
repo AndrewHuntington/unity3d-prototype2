@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
+  public PlayerController player;
+
   // Start is called before the first frame update
   void Start()
   {
-
+    GameObject playerObject = GameObject.Find("Player");
+    if (playerObject != null)
+    {
+      player = playerObject.GetComponent<PlayerController>();
+    }
   }
 
   // Update is called once per frame
@@ -21,8 +27,10 @@ public class DetectCollisions : MonoBehaviour
     if (!other.CompareTag("Player"))
     {
       Destroy(gameObject);
+      Destroy(other.gameObject);
+      player.score++;
+      Debug.Log("Score: " + player.score);
     }
-    // This isn't really needed. Just left as an example for myself.
-    // Destroy(other.gameObject);
+
   }
 }
