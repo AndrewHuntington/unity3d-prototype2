@@ -5,6 +5,7 @@ using UnityEngine;
 public class DetectCollisions : MonoBehaviour
 {
   public PlayerController player;
+  public Enemy enemy;
 
   // Start is called before the first frame update
   void Start()
@@ -24,12 +25,16 @@ public class DetectCollisions : MonoBehaviour
 
   private void OnTriggerEnter(Collider other)
   {
-    if (!other.CompareTag("Player"))
+    if (!other.CompareTag("Player") && enemy.health <= 0)
     {
       Destroy(gameObject);
       Destroy(other.gameObject);
       player.score++;
       Debug.Log("Score: " + player.score);
+    }
+    else if (!other.CompareTag("Player"))
+    {
+      enemy.health--;
     }
 
   }

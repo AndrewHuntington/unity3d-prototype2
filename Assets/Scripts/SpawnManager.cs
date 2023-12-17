@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
   public GameObject[] animalPrefabsTop;
   public GameObject[] animalPrefabsRight;
   public GameObject[] animalPrefabsLeft;
-  private float spawnRangeX = 20f;
+  private float spawnRangeX = 18f;
   public float spawnRangeZTop = 10f;
   public float spawnRangeZBottom = -1f;
 
@@ -21,8 +21,8 @@ public class SpawnManager : MonoBehaviour
   void Start()
   {
     InvokeRepeating("SpawnRandomAnimalTop", startDelay, spawnInterval);
-    InvokeRepeating("SpawnRandomAnimalRightSide", startDelay, spawnInterval);
-    InvokeRepeating("SpawnRandomAnimalLeftSide", startDelay, spawnInterval);
+    // InvokeRepeating("SpawnRandomAnimalRightSide", startDelay, spawnInterval);
+    // InvokeRepeating("SpawnRandomAnimalLeftSide", startDelay, spawnInterval);
 
   }
 
@@ -40,21 +40,21 @@ public class SpawnManager : MonoBehaviour
     Instantiate(animalPrefabsTop[animalIndex], spawnPos, animalPrefabsTop[animalIndex].transform.rotation);
   }
 
-  private void SpawnRandomAnimalRightSide()
-  {
-    int animalIndex = Random.Range(0, animalPrefabsRight.Length);
+  // private void SpawnRandomAnimalRightSide()
+  // {
+  //   int animalIndex = Random.Range(0, animalPrefabsRight.Length);
 
-    Vector3 spawnPos = new(spawnPosX, 0, Random.Range(spawnRangeZBottom, spawnRangeZTop));
-    Instantiate(animalPrefabsRight[animalIndex], spawnPos, animalPrefabsRight[animalIndex].transform.rotation);
-  }
+  //   Vector3 spawnPos = new(spawnPosX, 0, Random.Range(spawnRangeZBottom, spawnRangeZTop));
+  //   Instantiate(animalPrefabsRight[animalIndex], spawnPos, animalPrefabsRight[animalIndex].transform.rotation);
+  // }
 
-  private void SpawnRandomAnimalLeftSide()
-  {
-    int animalIndex = Random.Range(0, animalPrefabsRight.Length);
+  // private void SpawnRandomAnimalLeftSide()
+  // {
+  //   int animalIndex = Random.Range(0, animalPrefabsRight.Length);
 
-    Vector3 spawnPos = new(-spawnPosX, 0, Random.Range(spawnRangeZBottom, spawnRangeZTop));
-    Instantiate(animalPrefabsLeft[animalIndex], spawnPos, animalPrefabsLeft[animalIndex].transform.rotation);
+  //   Vector3 spawnPos = new(-spawnPosX, 0, Random.Range(spawnRangeZBottom, spawnRangeZTop));
+  //   Instantiate(animalPrefabsLeft[animalIndex], spawnPos, animalPrefabsLeft[animalIndex].transform.rotation);
 
-  }
+  // }
 }
 
